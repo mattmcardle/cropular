@@ -1,7 +1,7 @@
 /*!
  * cropular
  * https://github.com/mattmcardle/cropper#readme
- * Version: 0.0.1 - 2016-02-16T11:42:32.410Z
+ * Version: 0.0.1 - 2016-02-16T13:34:44.734Z
  * License: ISC
  */
 
@@ -42,9 +42,11 @@ cropular.controller('CropularController', [
 				'imageHeight': ctrl.canvas.height
 			};
             // Call user defined method here
+            $scope.cropMethod()(cropParams);
 		};
         
         ctrl.crop = function() {
+            
             ctrl.ctx = ctrl.canvas.getContext('2d');
 			ctrl.showCropControls = true;
 			ctrl.editOptions = false;
@@ -52,19 +54,28 @@ cropular.controller('CropularController', [
 			ctrl.canvas.height = ctrl.image.clientHeight;
 			ctrl.canvasStyle = {'background-image': "url(" + $scope.imageUrl + ")", 'background-size': "contain"};
 
-			ctrl.canvas.addEventListener('mousedown', ctrl.mouseUp, false);
-			ctrl.canvas.addEventListener('mouseup', ctrl.mouseDown, false);
-
+			ctrl.canvas.addEventListener('mousedown', ctrl.mouseDown, false);
+			ctrl.canvas.addEventListener('mouseup', ctrl.mouseUp, false);
 			ctrl.canvas.addEventListener('mousemove', ctrl.mouseMove, false);
-
+            console.log('here');
+            
 			ctrl.rect = {
 				startX: ctrl.image.clientWidth / 4,
 				startY: ctrl.image.clientHeight / 4,
-				w: ctrl.image.clientHeight / 2,
-				h: ctrl.image.clientWidth / 2
+				w: ctrl.image.clientWidth / 2,
+				h: ctrl.image.clientHeight / 2
 			};
 
 			ctrl.draw();
+        };
+        
+        ctrl.cancelCrop = function(){
+			ctrl.showCropControls = false;
+			ctrl.editOptions = true;
+        };
+        
+        ctrl.rotate = function(degrees) {
+            $scope.rotateMethod()(degrees);
         };
         
         
@@ -72,7 +83,7 @@ cropular.controller('CropularController', [
 			var offset = ctrl.getPageTopLeft(ctrl.canvas);
 			ctrl.mouseX = e.pageX - offset.left;
 			ctrl.mouseY = e.pageY - offset.top;
-
+            console.log(ctrl.mouseX, ctrl.rect.startX + ctrl.rect.w);
 			// if there isn't a rect yet
 			if (ctrl.rect.w === undefined) {
 				ctrl.rect.startX = ctrl.mouseY;
@@ -97,7 +108,6 @@ cropular.controller('CropularController', [
 				// (5.) none of them
 				return;
 			}
-
 			ctrl.ctx.clearRect(0, 0, ctrl.canvas.width, ctrl.canvas.height);
 			ctrl.draw();
 		};
@@ -194,6 +204,8 @@ cropular.directive('cropular', function() {
       scope: {
         height:'@',
         imageUrl: '=',
+        cropMethod: '&',
+        rotateMethod: '&'
       },
       templateUrl: 'template.html',
       controller:"CropularController",
@@ -201,4 +213,4 @@ cropular.directive('cropular', function() {
     };
   });
 }());
-angular.module("cropular").run(["$templateCache", function($templateCache) {$templateCache.put("template.html","<div class=\"row\"><div class=\"col-md-12\"><img id=\"attachment-image\" ng-bind=\"vm.image\" style=\"z-index:0;\" ng-src=\"{{imageUrl}}\" ng-show=\"vm.editOptions\" class=\"img-responsive\"><canvas id=\"canvas\" ng-show=\"vm.showCropControls\" ng-style=\"vm.canvasStyle\"></canvas></div></div><div class=\"row\"><div class=\"col-md-12\"><br><div class=\"btn-group\" ng-show=\"vm.editOptions\" role=\"group\"><button type=\"button\" ladda=\"vm.editAttachmentLoading\" ng-click=\"vm.crop()\" class=\"btn btn-default\">Crop</button></div><div class=\"btn-group crop-controls\" ng-show=\"vm.editOptions\" role=\"group\"><button type=\"button\" ladda=\"vm.editAttachmentLoading\" data-spinner-size=\"30\" ng-click=\"vm.rotate(90)\" class=\"btn btn-default\">Rotate Left</button> <button type=\"button\" ladda=\"vm.editAttachmentLoading\" data-spinner-size=\"30\" ng-click=\"vm.rotate(-90)\" class=\"btn btn-default\">Rotate Right</button></div><div class=\"btn-group crop-controls\" ng-show=\"vm.showCropControls\" role=\"group\"><button type=\"button\" ladda=\"vm.editAttachmentLoading\" data-spinner-size=\"30\" ng-click=\"vm.saveCrop()\" class=\"btn btn-success\">Save Crop</button> <button type=\"button\" ng-click=\"vm.cancelCrop()\" ng-disabled=\"vm.editAttachmentLoading\" class=\"btn btn-default\">Cancel</button></div></div></div>");}]);
+angular.module("cropular").run(["$templateCache", function($templateCache) {$templateCache.put("template.html","<div class=\"row\"><div class=\"col-md-12\"><img id=\"attachment-image\" ng-bind=\"vm.image\" style=\"z-index:0;\" ng-src=\"{{imageUrl}}\" ng-show=\"vm.editOptions\" class=\"img-responsive\"><canvas id=\"canvas\" ng-show=\"vm.showCropControls\" ng-style=\"vm.canvasStyle\"></canvas></div></div><div class=\"row\"><div class=\"col-md-12\"><br><div class=\"btn-group\" ng-show=\"vm.editOptions\" role=\"group\"><button type=\"button\" ladda=\"vm.editAttachmentLoading\" ng-click=\"vm.crop()\" class=\"btn btn-default\">Crop</button></div><div class=\"btn-group crop-controls\" ng-show=\"vm.editOptions\" role=\"group\"><button type=\"button\" ladda=\"vm.editAttachmentLoading\" data-spinner-size=\"30\" ng-click=\"vm.rotate(-90)\" class=\"btn btn-default\">Rotate Left</button> <button type=\"button\" ladda=\"vm.editAttachmentLoading\" data-spinner-size=\"30\" ng-click=\"vm.rotate(90)\" class=\"btn btn-default\">Rotate Right</button></div><div class=\"btn-group crop-controls\" ng-show=\"vm.showCropControls\" role=\"group\"><button type=\"button\" ladda=\"vm.editAttachmentLoading\" data-spinner-size=\"30\" ng-click=\"vm.saveCrop()\" class=\"btn btn-success\">Save Crop</button> <button type=\"button\" ng-click=\"vm.cancelCrop()\" ng-disabled=\"vm.editAttachmentLoading\" class=\"btn btn-default\">Cancel</button></div></div></div>");}]);
