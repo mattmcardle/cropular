@@ -1,0 +1,1 @@
+{"name":"Cropular","tagline":"","body":"# cropular\r\n\r\nCropping tool for AngularJS, still in development.\r\n\r\n[Example](/example/)\r\n\r\n## Contributing\r\n    git clone https://github.com/mattmcardle/cropular.git\r\n    cd cropular\r\n    npm install\r\n    gulp watch","google":"","note":"Don't delete this file! It's used internally to help with page regeneration."}
