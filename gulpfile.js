@@ -48,7 +48,7 @@ gulp.task('scripts', ['clean'], function() {
       .pipe($.plumber({
         errorHandler: handleError
       }))
-      .pipe($.concat('select_without_templates.js'))
+      .pipe($.concat('cropular_without_templates.js'))
       .pipe($.header('(function () { \n"use strict";\n'))
       .pipe($.footer('\n}());'))
       .pipe($.jshint())
