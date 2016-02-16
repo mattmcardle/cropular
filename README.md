@@ -3,6 +3,7 @@ A cropping frontend for AngularJS.
 
 ## Installation
 ### Install With Bower:
+
     bower install cropper
 Add the script to your HTML:
 
