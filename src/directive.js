@@ -4,6 +4,8 @@ cropular.directive('cropular', function() {
       scope: {
         height:'@',
         imageUrl: '=',
+        cropMethod: '&',
+        rotateMethod: '&'
       },
       templateUrl: 'template.html',
       controller:"CropularController",
