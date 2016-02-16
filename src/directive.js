@@ -2,7 +2,6 @@ cropular.directive('cropular', function() {
     return {
       restrict:'E',
       scope: {
-        height:'@',
         imageUrl: '=',
         cropMethod: '&',
         rotateMethod: '&'
