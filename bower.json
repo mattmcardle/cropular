@@ -1,0 +1,25 @@
+{
+  "name": "cropular",
+  "description": "Angular cropping front end tool",
+  "main": "dist/cropular.min.js",
+  "authors": [
+    "https://github.com/mattmcardle"
+  ],
+  "license": "ISC",
+  "keywords": [
+    "cropping",
+    "angular",
+    "angularjs",
+    "image",
+    "manipulation"
+  ],
+  "homepage": "https://github.com/mattmcardle/cropper",
+  "moduleType": [],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
