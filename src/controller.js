@@ -31,9 +31,11 @@ cropular.controller('CropularController', [
 				'imageHeight': ctrl.canvas.height
 			};
             // Call user defined method here
+            $scope.cropMethod()(cropParams);
 		};
         
         ctrl.crop = function() {
+            
             ctrl.ctx = ctrl.canvas.getContext('2d');
 			ctrl.showCropControls = true;
 			ctrl.editOptions = false;
@@ -41,27 +43,36 @@ cropular.controller('CropularController', [
 			ctrl.canvas.height = ctrl.image.clientHeight;
 			ctrl.canvasStyle = {'background-image': "url(" + $scope.imageUrl + ")", 'background-size': "contain"};
 
-			ctrl.canvas.addEventListener('mousedown', ctrl.mouseUp, false);
-			ctrl.canvas.addEventListener('mouseup', ctrl.mouseDown, false);
-
+			ctrl.canvas.addEventListener('mousedown', ctrl.mouseDown, false);
+			ctrl.canvas.addEventListener('mouseup', ctrl.mouseUp, false);
 			ctrl.canvas.addEventListener('mousemove', ctrl.mouseMove, false);
-
+            console.log('here');
+            
 			ctrl.rect = {
 				startX: ctrl.image.clientWidth / 4,
 				startY: ctrl.image.clientHeight / 4,
-				w: ctrl.image.clientHeight / 2,
-				h: ctrl.image.clientWidth / 2
+				w: ctrl.image.clientWidth / 2,
+				h: ctrl.image.clientHeight / 2
 			};
 
 			ctrl.draw();
         };
+        
+        ctrl.cancelCrop = function(){
+			ctrl.showCropControls = false;
+			ctrl.editOptions = true;
+        };
+        
+        ctrl.rotate = function(degrees) {
+            $scope.rotateMethod()(degrees);
+        }
         
         
 		ctrl.mouseDown = function(e) {
 			var offset = ctrl.getPageTopLeft(ctrl.canvas);
 			ctrl.mouseX = e.pageX - offset.left;
 			ctrl.mouseY = e.pageY - offset.top;
-
+            console.log(ctrl.mouseX, ctrl.rect.startX + ctrl.rect.w);
 			// if there isn't a rect yet
 			if (ctrl.rect.w === undefined) {
 				ctrl.rect.startX = ctrl.mouseY;
@@ -86,7 +97,6 @@ cropular.controller('CropularController', [
 				// (5.) none of them
 				return;
 			}
-
 			ctrl.ctx.clearRect(0, 0, ctrl.canvas.width, ctrl.canvas.height);
 			ctrl.draw();
 		};
