@@ -1,0 +1,1 @@
+var cropular = angular.module('cropular', []);

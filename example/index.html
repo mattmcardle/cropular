@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="demo">
+<head>
+  <meta charset="utf-8">
+  <title>Cropular - Cropping tool for AngularJs</title>
+
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.28/angular.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.28/angular-sanitize.js"></script>
+  <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.css">
+
+  <!-- cropular files -->
+  <script src="../dist/cropular.js"></script>
+  
+  
+  <style>
+    body {
+      padding: 15px;
+    }
+  </style>
+</head>
+
+<body ng-controller="DemoCtrl as vm">
+  <script src="demo.js"></script>
+  <cropular image-url="vm.url" height="200"></cropular>
+</body>
+</html>
