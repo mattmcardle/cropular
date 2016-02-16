@@ -20,14 +20,17 @@
 
 <body ng-controller="DemoCtrl as vm">
   <script src="demo.js"></script>
-  <div class="row">
-      <div class="col-md-8">
-          <cropular image-url="vm.url" crop-method="vm.doCrop" rotate-method="vm.doRotate"></cropular>  
-      </div>
-      <div class="col-md-4">
-          <p>Crop Properties: {{vm.cropProperties}}</p>
-          <p>Rotate: {{vm.rotateValue}}</p>
-      </div>
-  </div>
+  
+    <div class="container-fluid">   
+        <div class="row">
+            <div class="col-md-8">
+                <cropular image-url="vm.url" crop-method="vm.doCrop" rotate-method="vm.doRotate"></cropular>  
+            </div>
+            <div class="col-md-4">
+                <p>Crop Properties: {{vm.cropProperties}}</p>
+                <p>Rotate: {{vm.rotateValue}}</p>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
