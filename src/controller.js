@@ -2,7 +2,6 @@ cropular.controller('CropularController', [
     '$scope', '$element', '$timeout', '$filter',
     function($scope, $element, $timeout, $filter) {
         var ctrl = this;
-        console.log($scope);
         ctrl.editAttachmentLoading = false;
         ctrl.canvas = document.getElementById('canvas');
         ctrl.image = document.getElementById('attachment-image');
@@ -48,7 +47,6 @@ cropular.controller('CropularController', [
 			ctrl.canvas.addEventListener('mousedown', ctrl.mouseDown, false);
 			ctrl.canvas.addEventListener('mouseup', ctrl.mouseUp, false);
 			ctrl.canvas.addEventListener('mousemove', ctrl.mouseMove, false);
-            console.log('here');
             
 			ctrl.rect = {
 				startX: ctrl.image.clientWidth / 4,
@@ -74,7 +72,6 @@ cropular.controller('CropularController', [
 			var offset = ctrl.getPageTopLeft(ctrl.canvas);
 			ctrl.mouseX = e.pageX - offset.left;
 			ctrl.mouseY = e.pageY - offset.top;
-            console.log(ctrl.mouseX, ctrl.rect.startX + ctrl.rect.w);
 			// if there isn't a rect yet
 			if (ctrl.rect.w === undefined) {
 				ctrl.rect.startX = ctrl.mouseY;
