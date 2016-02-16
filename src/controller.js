@@ -27,11 +27,13 @@ cropular.controller('CropularController', [
 				'height': ctrl.rect.h,
 				'x': ctrl.rect.startX,
 				'y': ctrl.rect.startY,
-				'imageWidth': ctrl.canvas.width,
-				'imageHeight': ctrl.canvas.height
+				'clientImageWidth': ctrl.canvas.width,
+				'clientImageHeight': ctrl.canvas.height
 			};
             // Call user defined method here
             $scope.cropMethod()(cropParams);
+			ctrl.showCropControls = false;
+			ctrl.editOptions = true;
 		};
         
         ctrl.crop = function() {
