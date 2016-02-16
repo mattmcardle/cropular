@@ -65,7 +65,7 @@ cropular.controller('CropularController', [
         
         ctrl.rotate = function(degrees) {
             $scope.rotateMethod()(degrees);
-        }
+        };
         
         
 		ctrl.mouseDown = function(e) {
