@@ -1,25 +1,7 @@
 <div class="row">
     <div class="col-md-12">
-        <img id="attachment-image" ng-bind="vm.image" style="z-index:0;" ng-src="{{imageUrl}}"  ng-show="vm.editOptions" class="img-responsive">
-        <canvas id="canvas" ng-show="vm.showCropControls"  ng-style="vm.canvasStyle" >
+        <img id="attachment-image" ng-bind="imageUrl" style="z-index:0;" ng-src="{{imageUrl}}"  ng-show="!enableCrop" class="img-responsive">
+        <canvas id="canvas" ng-show="enableCrop"  style="background-image: url('{{imageUrl}}'); background-size: contain" >
         </canvas>
-    </div>
-</div>
-<div class="row" >
-    <div class="col-md-12">
-        <br>
-        <div class="btn-group" ng-show="vm.editOptions" role="group">
-            <button type="button" ladda="vm.editAttachmentLoading" ng-click="vm.crop()" class="btn btn-default">Crop</button>
-        </div>
-
-        <div class="btn-group crop-controls" ng-show="vm.editOptions" role="group">
-            <button type="button" ladda="vm.editAttachmentLoading" data-spinner-size="30" ng-click="vm.rotate(-90)" class="btn btn-default">Rotate Left</button>
-            <button type="button" ladda="vm.editAttachmentLoading" data-spinner-size="30"  ng-click="vm.rotate(90)" class="btn btn-default">Rotate Right</button>
-        </div>
-
-        <div class="btn-group crop-controls" ng-show="vm.showCropControls" role="group">
-            <button type="button" ladda="vm.editAttachmentLoading" data-spinner-size="30" ng-click="vm.saveCrop()" class="btn btn-success">Save Crop</button>
-            <button type="button" ng-click="vm.cancelCrop()" class="btn btn-default">Cancel</button>
-        </div>
     </div>
 </div>

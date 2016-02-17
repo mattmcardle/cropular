@@ -3,11 +3,10 @@ cropular.directive('cropular', function() {
       restrict:'E',
       scope: {
         imageUrl: '=',
-        cropMethod: '&',
-        rotateMethod: '&'
+        cropObject: '=',
+        enableCrop: '='
       },
       templateUrl: 'template.html',
       controller:"CropularController",
-      controllerAs:"vm"
     };
   });

@@ -1,0 +1,15 @@
+/*!
+ * cropular
+ * https://github.com/mattmcardle/cropper#readme
+ * Version: 0.0.1 - 2016-02-17T19:19:46.735Z
+ * License: ISC
+ */
+
+
+.row{
+    max-width: 100%;   
+}
+
+.row img, .row canvas{
+    max-width: 100%;
+}
