@@ -1,7 +1,7 @@
 /*!
  * cropular
  * https://github.com/mattmcardle/cropper#readme
- * Version: 0.0.1 - 2016-02-17T19:19:46.630Z
+ * Version: 0.0.2 - 2016-02-17T19:44:31.044Z
  * License: ISC
  */
 
@@ -11,12 +11,10 @@
 var cropular = angular.module('cropular', []);
 cropular.controller('CropularController', [
     '$scope', '$element', '$timeout', '$filter', '$http', '$q',
-    function($scope, $element, $timeout, $filter, $http, $q) {
+    function($scope, $element, $timeout, $filter) {
         var ctrl = this;
         ctrl.canvas = document.getElementById('canvas');
         ctrl.image = document.getElementById('attachment-image');
-        console.log($scope);
-        ctrl.url = $scope.imageUrl;
         ctrl.cropObject = $scope.cropObject;
         ctrl.enableCrop = $scope.enableCrop;
         ctrl.test = $scope.test;
@@ -30,9 +28,6 @@ cropular.controller('CropularController', [
 		ctrl.dragBL = false;
 		ctrl.dragTR = false;
 		ctrl.dragBR = false;
-
-		ctrl.canvasStyle = {};
-            console.log('here');
         
         $element.find('img').bind('load',  function(){
             ctrl.calculateSize();
@@ -48,28 +43,8 @@ cropular.controller('CropularController', [
 				'y': ctrl.rect.startY,
 				'clientImageWidth': ctrl.canvas.width,
 				'clientImageHeight': ctrl.canvas.height
-			};
-            console.log($scope.cropObject);            
+			};        
 		};
-        
-        ctrl.getImage = function() {
-            var d = $q.defer(); 
-            $http.get(ctrl.url)
-                .success(function(result) {
-                    d.resolve(result);
-                }.bind(d));
-            return d.promise;
-        };
-        
-        ctrl.loadImage = function() {
-            ctrl.getImage()
-                .then(
-                    function(result) {
-                        ctrl.calculateSize();
-                        ctrl.crop();
-                    }.bind(ctrl)
-                );
-        };
         
         ctrl.calculateSize = function(){
 			ctrl.canvas.width = ctrl.image.clientWidth;
