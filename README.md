@@ -1,5 +1,6 @@
 # cropular
 A cropping frontend for AngularJS.
+[Demo](http://cropular.matthewmcardle.com/example/)
 
 ## Installation
 ### Install With Bower:
