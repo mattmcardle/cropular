@@ -1,7 +1,7 @@
 /*!
  * cropular
  * https://github.com/mattmcardle/cropper#readme
- * Version: 0.0.2 - 2016-02-17T19:44:31.044Z
+ * Version: 0.0.2 - 2016-02-17T22:57:13.217Z
  * License: ISC
  */
 
@@ -43,7 +43,7 @@ cropular.controller('CropularController', [
 				'y': ctrl.rect.startY,
 				'clientImageWidth': ctrl.canvas.width,
 				'clientImageHeight': ctrl.canvas.height
-			};        
+			};   
 		};
         
         ctrl.calculateSize = function(){
@@ -196,9 +196,9 @@ cropular.directive('cropular', function() {
     return {
       restrict:'E',
       scope: {
-        imageUrl: '=',
-        cropObject: '=',
-        enableCrop: '='
+        imageUrl: '=imageUrl',
+        cropObject: '=cropObject',
+        enableCrop: '=enableCrop'
       },
       templateUrl: 'template.html',
       controller:"CropularController",

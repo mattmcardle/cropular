@@ -32,7 +32,7 @@ cropular.controller('CropularController', [
 				'y': ctrl.rect.startY,
 				'clientImageWidth': ctrl.canvas.width,
 				'clientImageHeight': ctrl.canvas.height
-			};        
+			};   
 		};
         
         ctrl.calculateSize = function(){
