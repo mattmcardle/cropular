@@ -2,9 +2,9 @@ cropular.directive('cropular', function() {
     return {
       restrict:'E',
       scope: {
-        imageUrl: '=imageUrl',
-        cropObject: '=cropObject',
-        enableCrop: '=enableCrop'
+        imageUrl: '=',
+        cropObject: '=',
+        enableCrop: '='
       },
       templateUrl: 'template.html',
       controller:"CropularController",

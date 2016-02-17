@@ -1,7 +1,7 @@
 /*!
  * cropular
  * https://github.com/mattmcardle/cropper#readme
- * Version: 0.0.2 - 2016-02-17T22:57:13.217Z
+ * Version: 0.0.3 - 2016-02-17T23:22:48.855Z
  * License: ISC
  */
 
@@ -35,7 +35,6 @@ cropular.controller('CropularController', [
         });
         
         ctrl.saveCrop = function() {
-            
 			$scope.cropObject = {
 				'width': ctrl.rect.w,
 				'height': ctrl.rect.h,
@@ -43,7 +42,8 @@ cropular.controller('CropularController', [
 				'y': ctrl.rect.startY,
 				'clientImageWidth': ctrl.canvas.width,
 				'clientImageHeight': ctrl.canvas.height
-			};   
+			};
+            $scope.$apply();
 		};
         
         ctrl.calculateSize = function(){
@@ -69,7 +69,6 @@ cropular.controller('CropularController', [
 			};
 
 			ctrl.draw();
-            ctrl.saveCrop();
         };
         
         
@@ -109,7 +108,7 @@ cropular.controller('CropularController', [
 			return Math.abs(p1 - p2) < ctrl.closeEnough;
 		};
 
-		ctrl.mouseUp = function () {
+		ctrl.mouseUp = function () {           
             if (ctrl.dragTL || ctrl.dragTR || ctrl.dragBL || ctrl.dragBR) {
                 ctrl.saveCrop();
             }
@@ -196,9 +195,9 @@ cropular.directive('cropular', function() {
     return {
       restrict:'E',
       scope: {
-        imageUrl: '=imageUrl',
-        cropObject: '=cropObject',
-        enableCrop: '=enableCrop'
+        imageUrl: '=',
+        cropObject: '=',
+        enableCrop: '='
       },
       templateUrl: 'template.html',
       controller:"CropularController",

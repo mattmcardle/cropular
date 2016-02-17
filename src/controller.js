@@ -24,7 +24,6 @@ cropular.controller('CropularController', [
         });
         
         ctrl.saveCrop = function() {
-            
 			$scope.cropObject = {
 				'width': ctrl.rect.w,
 				'height': ctrl.rect.h,
@@ -32,7 +31,8 @@ cropular.controller('CropularController', [
 				'y': ctrl.rect.startY,
 				'clientImageWidth': ctrl.canvas.width,
 				'clientImageHeight': ctrl.canvas.height
-			};   
+			};
+            $scope.$apply();
 		};
         
         ctrl.calculateSize = function(){
@@ -58,7 +58,6 @@ cropular.controller('CropularController', [
 			};
 
 			ctrl.draw();
-            ctrl.saveCrop();
         };
         
         
@@ -98,7 +97,7 @@ cropular.controller('CropularController', [
 			return Math.abs(p1 - p2) < ctrl.closeEnough;
 		};
 
-		ctrl.mouseUp = function () {
+		ctrl.mouseUp = function () {           
             if (ctrl.dragTL || ctrl.dragTR || ctrl.dragBL || ctrl.dragBR) {
                 ctrl.saveCrop();
             }
