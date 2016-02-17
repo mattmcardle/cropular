@@ -22,9 +22,11 @@ Then add cropular to your module depencies:
 
 ## Usage
  
- Cropular usage is very simple, it requires you create two methods on your controller: crop and rotate. The crop method will be callled when a user is ready to crop the image to their desired size, it takes 1 parameter which is an object of the cropping details, these details should then be passed to the server to do the actually clipping of the image. Similarly, rotate method will take one paramater, which will be called when the user clicks on one of the rotate buttons, the parameter will be number of degrees the image should be rotated, clockwise. At the moment the rotate method is only called with two values, "90" or "-90". The cropular directive will also require the url of the image that is to be cropped. All of these properties are to be supplied as below:
+ Cropular usage is very simple, it requires you provide 3 properties, the url of the image to be cropped, the crop object, which will hold the details of the crop to be sent to the server, and a crop enabled flag which determines whether or not to display the image in cropping mode. All of these properties have 2 way binding, so if they are updated in the directive, you have access to the changes in your controller, and vice versa. 
+ 
+ After you make the crop call to the server you can update the ```image-url``` property with the new url, or if the url does not change I recommend appending the url with a timestamp to facilitate cache-busting.
     
-    <cropular image-url="vm.url" crop-method="vm.crop" rotate-method="vm.rotate"></cropular>
+    <cropular image-url="vm.url" crop-object="vm.cropObject" enable-crop="vm.cropEnabled" my-test="vm.test"></cropular>
     
 For further assistance, please check out the example included in this repository.
 
