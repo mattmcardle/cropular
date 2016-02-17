@@ -1,6 +1,6 @@
 {
   "name": "cropular",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Angular cropping front end tool",
   "main": "gulpfile.js",
   "scripts": {
