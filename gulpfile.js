@@ -3,6 +3,7 @@ var del = require('del');
 var gulp = require('gulp');
 var es = require('event-stream');
 var karma = require('karma').server;
+var order = require('gulp-order');
 var $ = require('gulp-load-plugins')();
 var runSequence = require('run-sequence');
 var conventionalRecommendedBump = require('conventional-recommended-bump');
@@ -33,16 +34,6 @@ gulp.task('clean', function(cb) {
 
 gulp.task('scripts', ['clean'], function() {
 
-  var buildTemplates = function () {
-    return gulp.src('src/**/*.html')
-      .pipe($.minifyHtml({
-             empty: true,
-             spare: true,
-             quotes: true
-            }))
-      .pipe($.angularTemplatecache({module: 'cropular'}));
-  };
-
   var buildLib = function(){
     return gulp.src(['src/common.js','src/*.js'])
       .pipe($.plumber({
@@ -56,10 +47,26 @@ gulp.task('scripts', ['clean'], function() {
       .pipe($.jshint.reporter('fail'));
   };
 
+  var buildTemplates = function () {
+    return gulp.src('src/**/*.html')
+      .pipe($.minifyHtml({
+             empty: true,
+             spare: true,
+             quotes: true
+            }))
+      .pipe($.angularTemplatecache({module: 'cropular'}));
+  };
+
   return es.merge(buildLib(), buildTemplates())
     .pipe($.plumber({
       errorHandler: handleError
     }))
+    .pipe(order([
+        'src/common.js',
+        'src/**/*.js',
+        'src/**/*.html'
+        
+    ]))
     .pipe($.concat('cropular.js'))
     .pipe($.header(config.banner, {
       timestamp: (new Date()).toISOString(), pkg: config.pkg
