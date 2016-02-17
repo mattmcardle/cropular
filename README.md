@@ -27,7 +27,7 @@ Then add cropular to your module depencies:
  
  After you make the crop call to the server you can update the ```image-url``` property with the new url, or if the url does not change I recommend appending the url with a timestamp to facilitate cache-busting.
     
-    <cropular image-url="vm.url" crop-object="vm.cropObject" enable-crop="vm.cropEnabled" my-test="vm.test"></cropular>
+    <cropular image-url="vm.url" crop-object="vm.cropObject" enable-crop="vm.cropEnabled"></cropular>
     
 For further assistance, please check out the example included in this repository.
 
