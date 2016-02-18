@@ -1,7 +1,7 @@
 /*!
  * cropular
  * https://github.com/mattmcardle/cropper#readme
- * Version: 0.0.3 - 2016-02-17T23:22:48.855Z
+ * Version: 0.0.5 - 2016-02-18T09:30:36.849Z
  * License: ISC
  */
 
@@ -204,4 +204,4 @@ cropular.directive('cropular', function() {
     };
   });
 }());
-angular.module("cropular").run(["$templateCache", function($templateCache) {$templateCache.put("template.html","<div class=\"row\"><div class=\"col-md-12\"><img id=\"attachment-image\" ng-bind=\"imageUrl\" style=\"z-index:0;\" ng-src=\"{{imageUrl}}\" ng-show=\"!enableCrop\" class=\"img-responsive\"><canvas id=\"canvas\" ng-show=\"enableCrop\" style=\"background-image: url(\'{{imageUrl}}\'); background-size: contain\"></canvas></div></div>");}]);
+angular.module("cropular").run(["$templateCache", function($templateCache) {$templateCache.put("template.html","<img id=\"attachment-image\" ng-bind=\"imageUrl\" style=\"z-index:0;\" ng-src=\"{{imageUrl}}\" ng-show=\"!enableCrop\" class=\"img-responsive\"><canvas id=\"canvas\" ng-show=\"enableCrop\" style=\"background-image: url(\'{{imageUrl}}\'); background-size: contain\"></canvas>");}]);
