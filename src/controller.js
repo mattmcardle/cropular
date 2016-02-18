@@ -56,6 +56,8 @@ cropular.controller('CropularController', [
 				w: ctrl.image.clientWidth / 2,
 				h: ctrl.image.clientHeight / 2
 			};
+            
+            ctrl.saveCrop();
 
 			ctrl.draw();
         };

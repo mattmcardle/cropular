@@ -1,7 +1,7 @@
 /*!
  * cropular
  * https://github.com/mattmcardle/cropper#readme
- * Version: 0.0.5 - 2016-02-18T09:30:36.849Z
+ * Version: 0.0.6 - 2016-02-18T09:42:07.600Z
  * License: ISC
  */
 
@@ -67,6 +67,8 @@ cropular.controller('CropularController', [
 				w: ctrl.image.clientWidth / 2,
 				h: ctrl.image.clientHeight / 2
 			};
+            
+            ctrl.saveCrop();
 
 			ctrl.draw();
         };
