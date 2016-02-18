@@ -1,7 +1,3 @@
-<div class="row">
-    <div class="col-md-12">
-        <img id="attachment-image" ng-bind="imageUrl" style="z-index:0;" ng-src="{{imageUrl}}"  ng-show="!enableCrop" class="img-responsive">
-        <canvas id="canvas" ng-show="enableCrop"  style="background-image: url('{{imageUrl}}'); background-size: contain" >
-        </canvas>
-    </div>
-</div>
+<img id="attachment-image" ng-bind="imageUrl" style="z-index:0;" ng-src="{{imageUrl}}"  ng-show="!enableCrop" class="img-responsive">
+<canvas id="canvas" ng-show="enableCrop"  style="background-image: url('{{imageUrl}}'); background-size: contain" >
+</canvas>
